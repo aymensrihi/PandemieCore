@@ -36,3 +36,5 @@ LE PROGRAMME VOUS DONNE INFORMATION SUR LES MALADIES OU LES VARIANT QUI EXISTENT
 C'EST UTILE POUR UN BON PLACEMENT DUN PATIENT QUI PORTE UNE MALADIE QUI PEUT ETRE INFLUENCEE PAR UNE AUTRE
 /////////
 l'équipe development vous conseille d'utilisé code::blocks pour toute modification du code.
+/////////
+vous allez trouver un lien drive qui contient un video descriptif afin de vous aider a mieux comprendre le fonctionnement de ce programme
