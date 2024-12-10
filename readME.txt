@@ -1,4 +1,4 @@
-PandemieCore est une application en ligne de commande (cmd) conçue pour la gestion des pandémies, développée en langage C. Cette application joue un rôle central dans la coordination et la gestion des crises sanitaires, en fournissant des outils essentiels pour le suivi des variants, des patients, et leur lits.
+PandemieCore est une application de commande (cmd) conçue pour la gestion des pandémies, développée en langage C. Cette application joue un rôle central dans la coordination et la gestion des crises sanitaires, en fournissant des outils essentiels pour le suivi des variants, des patients, et leur lits.
 
 Les fonctionnalités principales de PandemieCore incluent :
 
