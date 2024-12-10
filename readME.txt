@@ -24,7 +24,7 @@ ajouter action(type de traitement)
 afficher la dernier action
 afficher les actions faite(en affichant la dernier action elle sera supprimer de cette liste)
 
-5/reseau hospitaller
+5/reseau hopital
 mettre en place un réseaux de communication lorsque la crise est majeur
 
 
