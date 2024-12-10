@@ -685,7 +685,7 @@ void afficher_pile(const ElementPile* sommet) {
     printf("2-gerrer secteur.\n");
     printf("3-gereer patient.\n");
     printf("4-gereer actions.\n");
-    printf("5-reseau hopitale.\n");
+    printf("5-reseau hopital.\n");
     printf("------------------------------------------------------\n\n");
     printf("Choisissez une option : ");
     }
