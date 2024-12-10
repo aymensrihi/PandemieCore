@@ -220,13 +220,13 @@ typedef struct File {
     int numero, valable, cin;
     int s = 0;
 
-    printf("Les numéros associés à '%s' avec la valeur 1 :\n", nom_recherche);
+    printf("Les numéros associés à '%s' qui sont valable :\n", nom_recherche);
 
     // Lire le fichier ligne par ligne
     while (fgets(ligne, sizeof(ligne), F)) {
         // Utilisation de sscanf pour parser la ligne avec des séparateurs ';'
         if (sscanf(ligne, "%49[^;];%d;%d;%d", nom, &numero, &valable, &cin) == 4) {
-            if (strcmp(nom, nom_recherche) == 0 && valable == 1) {
+            if (strcmp(nom, nom_recherche) == 0 && valable == 0) {
                 printf("%d\n", numero);
                 s++;
             }
@@ -385,9 +385,6 @@ void variant_par_secteur() {
             }
         }
 
-        if (!found) {
-            printf("Code %s non trouvé dans le fichier patient\n", codeToCheck);
-        }
     }
 
     fclose(fileLits);
@@ -681,7 +678,7 @@ void afficher_pile(const ElementPile* sommet) {
 
     void Menu() {
     printf("-------------------------------------------------------\n");
-    printf("\n                  **classification des maladies et l'organisation de l'hospitale lors d'une pandemie**     \n\n");
+    printf("\n   **      classification des maladies et l'organisation de l'hospitale lors d'une pandemie avec PandemieCore      **     \n\n");
     printf("           < WELCOME TO THE MAIN MENU >\n\n");
     printf("-------------------------------------------------------\n");
     printf("1-gerrer variants.\n");
@@ -728,7 +725,7 @@ void afficher_pile(const ElementPile* sommet) {
     printf("\n                  **gerrer les actions**     \n");
     printf("-------------------------------------------------------\n");
     printf("1-ajouter une action\n");
-    printf("2-supprimer une action\n");
+    printf("2-action precedente\n");
     printf("3-Afficher les actions\n");
     printf("4-Quitter\n");
 }
@@ -922,3 +919,4 @@ int main() {
 
        }
         }
+
