@@ -1,0 +1,5 @@
+11111111;ahmed;covid
+22222222;manar;alpha
+33333333;amine;beta
+123456789;ahmed;covid
+456;mounir;alpha

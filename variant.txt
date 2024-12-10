@@ -1,0 +1,2 @@
+alpha;beta;basse temperature
+covid;alpha;temperature>38 et forte propagation
