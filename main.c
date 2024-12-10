@@ -14,7 +14,7 @@
    typedef struct lit{
    int id;
    int valable;//1 si ce lit est valable 0 sinon
-   int cin_patient;//-1 si ce lit est non utilisé
+   int cin_patient;//-1 si ce lit est non utilisÃ©
    struct lit* suiv;
    } lit;
    typedef struct secteur{
@@ -30,7 +30,7 @@
 } Entry;
 typedef struct Node {
     char question[256];
-    float probability; // Ajout d'un champ pour la probabilité
+    float probability; // Ajout d'un champ pour la probabilitÃ©
     struct Node *yes;
     struct Node *no;
 } Node;
@@ -96,7 +96,7 @@ typedef struct File {
     variant.des[strcspn(variant.des, "\n")] = '\0';
     fprintf(F,"%s;%s;%s\n",variant.nom,variant.hote,variant.des);
     fclose(F);
-    printf("le variant a été ajouté avec succès.\n");
+    printf("le variant a Ã©tÃ© ajoutÃ© avec succÃ¨s.\n");
    }
    };
    //pour afficher le variant//
@@ -147,7 +147,7 @@ typedef struct File {
     char maladie[100], hote[100], description[100];
     int trouve = 0;
 
-    printf("Les lignes où le mot '%s' existe dans la description :\n", mot_recherche);
+    printf("Les lignes oÃ¹ le mot '%s' existe dans la description :\n", mot_recherche);
 
     while (fgets(ligne, sizeof(ligne), F)) {
         if (sscanf(ligne, "%99[^;];%99[^;];%99[^\n]", maladie, hote, description) == 3) {
@@ -170,7 +170,7 @@ typedef struct File {
     while (s != NULL && strcmp(s->nom, secteur_nom) != 0) {
         s = s->suiv;
     }    if (s == NULL) {
-        // Création du secteur si non existant
+        // CrÃ©ation du secteur si non existant
         s = (secteur *)malloc(sizeof(secteur));
         strcpy(s->nom, secteur_nom);
         s->lits = NULL;
@@ -178,7 +178,7 @@ typedef struct File {
         debut = s;
     }
 
-    // Création du lit
+    // CrÃ©ation du lit
     lit *l = (lit *)malloc(sizeof(lit));
     l->id = lit_id;
     l->valable = validite;
@@ -220,11 +220,11 @@ typedef struct File {
     int numero, valable, cin;
     int s = 0;
 
-    printf("Les numéros associés à '%s' qui sont valable :\n", nom_recherche);
+    printf("Les numÃ©ros associÃ©s Ã  '%s' qui sont valable :\n", nom_recherche);
 
     // Lire le fichier ligne par ligne
     while (fgets(ligne, sizeof(ligne), F)) {
-        // Utilisation de sscanf pour parser la ligne avec des séparateurs ';'
+        // Utilisation de sscanf pour parser la ligne avec des sÃ©parateurs ';'
         if (sscanf(ligne, "%49[^;];%d;%d;%d", nom, &numero, &valable, &cin) == 4) {
             if (strcmp(nom, nom_recherche) == 0 && valable == 0) {
                 printf("%d\n", numero);
@@ -259,7 +259,7 @@ void ajouter_patient(){
     strcpy(patient.maladie,n_maladie);
     fprintf(F,"%d;%s;%s\n",patient.cin,patient.nom,patient.maladie);
     fclose(F);
-    printf("le patient a ete ajouté avec succes.\n");
+    printf("le patient a ete ajoutÃ© avec succes.\n");
    }
    void supprimer_patient(int cin_patient) {
        FILE *F_lits = fopen("./lits.txt", "r");
@@ -270,22 +270,22 @@ void ajouter_patient(){
            return;
        }
        char ligne[100];
-       int lit_modifie = 0; // Indicateur pour savoir si le lit a été modifié
+       int lit_modifie = 0; // Indicateur pour savoir si le lit a Ã©tÃ© modifiÃ©
        while (fgets(ligne, sizeof(ligne), F_lits)) {
            char secteur[50];
            int numero_lit, valable, cin;
 
-           // Lecture des données d'une ligne
+           // Lecture des donnÃ©es d'une ligne
            sscanf(ligne, "%[^;];%d;%d;%d", secteur, &numero_lit, &valable, &cin);
 
-           // Si le CIN correspond, on libère le lit
+           // Si le CIN correspond, on libÃ¨re le lit
            if (cin == cin_patient) {
-               cin = -1; // Libération du lit
+               cin = -1; // LibÃ©ration du lit
                valable=0;
                lit_modifie = 1;
            }
 
-           // Écriture des données (modifiées ou non) dans le fichier temporaire
+           // Ã‰criture des donnÃ©es (modifiÃ©es ou non) dans le fichier temporaire
            fprintf(F_temp, "%s;%d;%d;%d\n", secteur, numero_lit, valable, cin);
        }
 
@@ -297,19 +297,19 @@ void ajouter_patient(){
        rename("./temp_lits.txt", "./lits.txt");
 
        if (lit_modifie) {
-           printf("Le patient avec CIN %d a été supprimé avec succès de la base de donnée.\n", cin_patient);
+           printf("Le patient avec CIN %d a Ã©tÃ© supprimÃ© avec succÃ¨s de la base de donnÃ©e.\n", cin_patient);
        } else {
-           printf("Aucun lit associé au CIN %d n'a été trouvé.\n", cin_patient);
+           printf("Aucun lit associÃ© au CIN %d n'a Ã©tÃ© trouvÃ©.\n", cin_patient);
        }
    }
    void traiter_suppression() {
        int cin;
-       printf("Entrez le CIN du patient à exclure : ");
+       printf("Entrez le CIN du patient Ã  exclure : ");
        scanf("%d", &cin);
 
        supprimer_patient(cin);
    }
-   // Fonction pour retirer les caractères de retour à la ligne d'une chaîne
+   // Fonction pour retirer les caractÃ¨res de retour Ã  la ligne d'une chaÃ®ne
 void trim_newline(char *str) {
     size_t len = strlen(str);
     if (len > 0 && str[len - 1] == '\n') {
@@ -329,14 +329,14 @@ void variant_par_secteur() {
         printf("Impossible d'ouvrir patient.txt\n");
         return;
     }
-    // Lire et stocker les données du fichier patient
+    // Lire et stocker les donnÃ©es du fichier patient
     while (fgets(line, sizeof(line), filePatient)) {
         Entry entry;
         char *token = strtok(line, ";");
 
         if (token != NULL) {
             strcpy(entry.code, token); // Lire le code
-            trim_newline(entry.code); // Supprimer le retour à la ligne
+            trim_newline(entry.code); // Supprimer le retour Ã  la ligne
             token = strtok(NULL, ";");
         }
 
@@ -365,13 +365,13 @@ void variant_par_secteur() {
         char category[20], codeToCheck[20];
         char *token = strtok(line, ";");
         if (token != NULL) {
-            strcpy(category, token); // Lire la catégorie (exemple : "A")
+            strcpy(category, token); // Lire la catÃ©gorie (exemple : "A")
             trim_newline(category);
-            token = strtok(NULL, ";"); // Ignorer le deuxième champ
+            token = strtok(NULL, ";"); // Ignorer le deuxiÃ¨me champ
         }
-        token = strtok(NULL, ";"); // Ignorer le troisième champ
+        token = strtok(NULL, ";"); // Ignorer le troisiÃ¨me champ
         if (token != NULL) {
-            token = strtok(NULL, ";"); // Obtenir le code à vérifier
+            token = strtok(NULL, ";"); // Obtenir le code Ã  vÃ©rifier
             strcpy(codeToCheck, token);
             trim_newline(codeToCheck);
         }
@@ -403,9 +403,9 @@ void rechercher_patient_par_cin(const char *cin_recherche) {
         // Extraire les champs de la ligne
         if (sscanf(ligne, "%49[^;];%49[^;];%99[^\n]", cin, nom, maladie) == 3) {
             if (strcmp(cin, cin_recherche) == 0) {
-                printf("Ligne trouvée : %s\n", ligne);
+                printf("Ligne trouvÃ©e : %s\n", ligne);
                 trouve = 1;
-                break; // On peut sortir après avoir trouvé le CIN
+                break; // On peut sortir aprÃ¨s avoir trouvÃ© le CIN
             }
         }
     }
@@ -413,7 +413,7 @@ void rechercher_patient_par_cin(const char *cin_recherche) {
     fclose(F);
 
     if (!trouve) {
-        printf("Le patient avec le CIN '%s' n'a pas été trouvé.\n", cin_recherche);
+        printf("Le patient avec le CIN '%s' n'a pas Ã©tÃ© trouvÃ©.\n", cin_recherche);
     }
 }
 void modifier_description_variant(const char *nom_variant, const char *nouvelle_description) {
@@ -443,7 +443,7 @@ void modifier_description_variant(const char *nom_variant, const char *nouvelle_
     if (trouve) {
         remove("./variant.txt");
         rename("./temp_variant.txt", "./variant.txt");
-        printf("La description du variant '%s' a été mise à jour avec succès.\n", nom_variant);
+        printf("La description du variant '%s' a Ã©tÃ© mise Ã  jour avec succÃ¨s.\n", nom_variant);
     } else {
         printf("Le variant '%s' n'existe pas dans le fichier.\n", nom_variant);
         remove("./temp_variant.txt");
@@ -510,8 +510,8 @@ void reseau(const char *secteur_nom, const char *maladie_critique) {
     float prob_influence = (total_maladies > 0) ? (float)maladie_count / total_maladies : 0.0;
 
     if (prob_influence > 0.75) {
-        fprintf(F_transferts, "Probabilité d'influence %.2f dépasse 0.75. Transfert général requis pour le secteur '%s'.\n", prob_influence, secteur_nom);
-        printf("Transfert général requis pour le secteur '%s'.\n", secteur_nom);
+        fprintf(F_transferts, "ProbabilitÃ© d'influence %.2f dÃ©passe 0.75. Transfert gÃ©nÃ©ral requis pour le secteur '%s'.\n", prob_influence, secteur_nom);
+        printf("Transfert gÃ©nÃ©ral requis pour le secteur '%s'.\n", secteur_nom);
 
         while (fgets(ligne, sizeof(ligne), F_autres_secteurs)) {
             fprintf(F_transferts, "Transfert vers : %s\n", ligne);
@@ -519,7 +519,7 @@ void reseau(const char *secteur_nom, const char *maladie_critique) {
         }
     } else if (total_lits == lits_occupees) {
         fprintf(F_transferts, "Stock complet dans le secteur '%s'. Recherche d'un secteur similaire.\n", secteur_nom);
-        printf("Recherche d'un secteur similaire dans un autre hôpital.\n");
+        printf("Recherche d'un secteur similaire dans un autre hÃ´pital.\n");
 
         char secteur_similaire[50], hopital_nom[50];
         while (fgets(ligne, sizeof(ligne), F_autres_secteurs)) {
@@ -531,14 +531,14 @@ void reseau(const char *secteur_nom, const char *maladie_critique) {
                 strcpy(secteur_similaire, token);
 
                 if (strcmp(secteur_nom, secteur_similaire) == 0) {
-                    fprintf(F_transferts, "Transfert possible vers '%s' à '%s'.\n", secteur_similaire, hopital_nom);
-                    printf("Transfert possible vers '%s' à '%s'.\n", secteur_similaire, hopital_nom);
+                    fprintf(F_transferts, "Transfert possible vers '%s' Ã  '%s'.\n", secteur_similaire, hopital_nom);
+                    printf("Transfert possible vers '%s' Ã  '%s'.\n", secteur_similaire, hopital_nom);
                 }
             }
         }
     } else {
-        fprintf(F_transferts, "Aucun transfert nécessaire pour le secteur '%s'.\n", secteur_nom);
-        printf("Aucun transfert nécessaire pour le secteur '%s'.\n", secteur_nom);
+        fprintf(F_transferts, "Aucun transfert nÃ©cessaire pour le secteur '%s'.\n", secteur_nom);
+        printf("Aucun transfert nÃ©cessaire pour le secteur '%s'.\n", secteur_nom);
     }
 
     fclose(F_autres_secteurs);
@@ -546,13 +546,13 @@ void reseau(const char *secteur_nom, const char *maladie_critique) {
 }
 void traiter_reseau() {
        char secteur[50], maladie[50];
-       printf("Entrez le nom du secteur à analyser : ");
+       printf("Entrez le nom du secteur Ã  analyser : ");
        scanf("%s", secteur);
        printf("Entrez le nom de la maladie critique : ");
        scanf("%s", maladie);
 
        reseau(secteur, maladie);
-       printf("\nAnalyse terminée. Consultez les résultats dans transferts.txt.\n");
+       printf("\nAnalyse terminÃ©e. Consultez les rÃ©sultats dans transferts.txt.\n");
    }
 
    void supprimer_ligne_par_numero(int numero) {
@@ -595,7 +595,7 @@ void traiter_reseau() {
     menu_principale();
 }
 
-// Fonction pour créer un nouveau nœud
+// Fonction pour crÃ©er un nouveau nÂœud
 Node* createNode(const char* question, float probability) {
     Node* node = (Node*)malloc(sizeof(Node));
     strcpy(node->question, question);
@@ -605,7 +605,7 @@ Node* createNode(const char* question, float probability) {
     return node;
 }
 
-// Fonction pour libérer l'arbre
+// Fonction pour libÃ©rer l'arbre
 void freeTree(Node* node) {
     if (node == NULL) return;
     freeTree(node->yes);
@@ -619,10 +619,10 @@ void traverseTree(Node* node) {
 
     if (node == NULL) return;
 
-    // Si c'est une feuille, afficher le résultat et la probabilité
+    // Si c'est une feuille, afficher le rÃ©sultat et la probabilitÃ©
     if (node->yes == NULL && node->no == NULL) {
-        printf("Résultat : %s\n", node->question);
-        printf("Probabilité estimée : %.2f%%\n", node->probability * 100);
+        printf("RÃ©sultat : %s\n", node->question);
+        printf("ProbabilitÃ© estimÃ©e : %.2f%%\n", node->probability * 100);
         return;
     }
 
@@ -636,7 +636,7 @@ void traverseTree(Node* node) {
     } else if (strcmp(response, "non") == 0) {
         traverseTree(node->no);
     } else {
-        printf("Réponse invalide. Veuillez répondre par 'oui' ou 'non'.\n");
+        printf("RÃ©ponse invalide. Veuillez rÃ©pondre par 'oui' ou 'non'.\n");
         traverseTree(node);
     }
 }
@@ -644,22 +644,22 @@ void traverseTree(Node* node) {
 void empiler(ElementPile** sommet, const char* action) {
     ElementPile* nouveau = malloc(sizeof(ElementPile));
     if (!nouveau) {
-        perror("Erreur : mémoire insuffisante");
+        perror("Erreur : mÃ©moire insuffisante");
         return;
     }
     strncpy(nouveau->action, action, sizeof(nouveau->action) - 1);
     nouveau->action[sizeof(nouveau->action) - 1] = '\0'; // Assurer la terminaison
     nouveau->suivant = *sommet;
     *sommet = nouveau;
-    printf("Action '%s' ajoutée à la pile.\n", action);
+    printf("Action '%s' ajoutÃ©e Ã  la pile.\n", action);
 }
 void depiler(ElementPile** sommet) {
     if (!*sommet) {
-        printf("Pile vide, aucune action à dépiler.\n");
+        printf("Pile vide, aucune action Ã  dÃ©piler.\n");
         return;
     }
     ElementPile* temp = *sommet;
-    printf("Action dépilée : '%s'\n", temp->action);
+    printf("Action dÃ©pilÃ©e : '%s'\n", temp->action);
     *sommet = temp->suivant;
     free(temp);
 }
@@ -678,7 +678,7 @@ void afficher_pile(const ElementPile* sommet) {
 
     void Menu() {
     printf("-------------------------------------------------------\n");
-    printf("\n   **      classification des maladies et l'organisation de l'hospitale lors d'une pandemie avec PandemieCore      **     \n\n");
+    printf("\n   **      classification des maladies et l'organisation de l'hopital lors d'une pandemie avec PandemieCore      **     \n\n");
     printf("           < WELCOME TO THE MAIN MENU >\n\n");
     printf("-------------------------------------------------------\n");
     printf("1-gerrer variants.\n");
@@ -742,7 +742,7 @@ int main() {
     scanf("%d", &choix);
     switch (choix) {
         case 1: {
-        printf("ecrire le nom du variant à chercher ses informations\n");
+        printf("ecrire le nom du variant Ã  chercher ses informations\n");
         scanf("%s",vname);
         afficher_variant(vname);
         menu_principale();
@@ -754,7 +754,7 @@ int main() {
             }
         case 3:{
          char mot_recherche[100];
-         printf("Entrez un mot à rechercher dans la description : ");
+         printf("Entrez un mot Ã  rechercher dans la description : ");
          scanf("%99s", mot_recherche);
          rechercher_par_description(mot_recherche);
          menu_principale();
@@ -774,14 +774,14 @@ int main() {
     menu_principale();
 
         case 5:{
-            Node* root = createNode("Température>38C ?", 0.0);
-    root->yes = createNode("Toux sèche ?", 0.0);
-    root->no = createNode("Température < 37C ?", 0.0);
+            Node* root = createNode("TempÃ©rature>38C ?", 0.0);
+    root->yes = createNode("Toux sÃ¨che ?", 0.0);
+    root->no = createNode("TempÃ©rature < 37C ?", 0.0);
 
-    root->yes->yes = createNode("Perte d'odorat ougoût ?", 0.0);
+    root->yes->yes = createNode("Perte d'odorat ougoÃ»t ?", 0.0);
     root->yes->no = createNode("Fatigue excessive ?", 0.0);
-    root->no->yes = createNode("Symptômes grippaux ?", 0.0);
-    root->no->no = createNode("Contact avec un cas confirmé ?", 0.0);
+    root->no->yes = createNode("SymptÃ´mes grippaux ?", 0.0);
+    root->no->no = createNode("Contact avec un cas confirmÃ© ?", 0.0);
 
     root->yes->yes->yes = createNode("COVID probable", 0.90);
     root->yes->yes->no = createNode("COVID possible", 0.75);
@@ -793,7 +793,7 @@ int main() {
     root->no->no->no = createNode("Pas de COVID", 0.05);
 
     // Parcourir l'arbre
-    printf("Prédiction COVID-19 avec probabilité\n");
+    printf("PrÃ©diction COVID-19 avec probabilitÃ©\n");
     traverseTree(root);
     menu_principale();
     return 0;
@@ -818,7 +818,7 @@ int main() {
             printf("donner le cin de lutilisateur");
             scanf("%d",&cin);
             L=ajouter_lit(L,sname,lid,v,cin);
-            printf("lit ajouté avec succes");
+            printf("lit ajoutÃ© avec succes");
             printf("voulez vous le sauvegarder ?(ecrire oui ou non)");
             scanf("%s",&ch);
             if (strcmp(ch, "oui") == 0){
@@ -835,11 +835,11 @@ int main() {
             case 3:{
                 int numero;
 
-                printf("Entrez le numero à supprimer : ");
+                printf("Entrez le numero Ã  supprimer : ");
                 scanf("%d", &numero);
 
                 supprimer_ligne_par_numero(numero);
-                printf("La ligne avec le numero %d a été supprimée.\n", numero);
+                printf("La ligne avec le numero %d a Ã©tÃ© supprimÃ©e.\n", numero);
 
     return 0;
 
@@ -879,18 +879,18 @@ int main() {
         menup(); // Afficher le menu
         printf("Entrez votre choix : ");
         scanf("%d", &choix); // Lire le choix de l'utilisateur
-        getchar(); // Consommer le '\n' restant après scanf
+        getchar(); // Consommer le '\n' restant aprÃ¨s scanf
 
         switch (choix) {
             case 1: // Empiler une action
-                printf("Entrez l'action à empiler : ");
+                printf("Entrez l'action Ã  empiler : ");
                 fgets(action, sizeof(action), stdin); // Lire l'action
                 action[strcspn(action, "\n")] = '\0'; // Supprimer le saut de ligne
                 empiler(&pile, action); // Empiler l'action
                 break;
 
-            case 2: // Dépiler une action
-                depiler(&pile); // Dépiler une action
+            case 2: // DÃ©piler une action
+                depiler(&pile); // DÃ©piler une action
                 break;
 
             case 3: // Afficher la pile
@@ -902,7 +902,7 @@ int main() {
                 break;
 
             default:
-                printf("Choix invalide. Veuillez essayer à nouveau.\n");
+                printf("Choix invalide. Veuillez essayer Ã  nouveau.\n");
         }
     } while (choix != 4); // Quitter lorsque l'utilisateur choisit '4'
 
