@@ -21,7 +21,7 @@ consulter les informations d'un patient.
 
 4/gestion des actions
 ajouter action(type de traitement)
-afficher la dernier action (en affichant la dernier action elle sera supprimer de cette liste)
+afficher la derniere action (en affichant la derniere action elle sera supprimer de cette liste)
 afficher les actions effectuées
 
 5/reseau hopital
