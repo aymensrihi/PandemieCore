@@ -38,17 +38,6 @@ typedef struct ElementPile {
     char action[100];
     struct ElementPile* suivant;
 } ElementPile;
-
-typedef struct ElementFile {
-    int id_patient;
-    char nom_patient[50];
-    struct ElementFile* suivant;
-} ElementFile;
-
-typedef struct File {
-    ElementFile* debut;
-    ElementFile* fin;
-} File;
 //fonction pour verifier si le variant existe//
    int check_existance(const char *name){
    FILE *F;
